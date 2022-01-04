@@ -105,6 +105,13 @@ contract Presale is ReentrancyGuard{
     function removeFromWhitelist(address _address) external onlyOwner {
         whitelist[_address] = false;
     }
+
+    function setCap(uint256 _minCap, uint256 _maxCap) external onlyOwner {
+        require(_minCap > 0, "Min cap must be larger than Zero");
+        require(_minCap < _maxCap, "Min cap must be lower than max Cap");
+        minCap = _minCap;
+        maxCap = _maxCap;
+    }
  
     // Investors can buy token only if they are whitelisted by Contract owner
     function buyTokens(address _address) public payable isWhitelisted {
