@@ -105,7 +105,8 @@ contract Presale is ReentrancyGuard{
     function removeFromWhitelist(address _address) external onlyOwner {
         whitelist[_address] = false;
     }
-
+    
+    // Set min and max amount tokens that investors can buy on Presale
     function setCap(uint256 _minCap, uint256 _maxCap) external onlyOwner {
         require(_minCap > 0, "Min cap must be larger than Zero");
         require(_minCap < _maxCap, "Min cap must be lower than max Cap");
